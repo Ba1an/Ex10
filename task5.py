@@ -2,7 +2,7 @@ class RomanNumber:
     def __init__(self, number):
         if str(number).isdigit():
             if self.is_int(number):
-                self.int_value = int(number)
+                self.int_value = number
                 self.rom_value = self.roman_number()
             else:
                 self.int_value = None
@@ -46,10 +46,11 @@ class RomanNumber:
         el_roman = {1: 'I', 4:'IV',5: 'V', 9: 'IX', 10: 'X', 40: 'XL', 50: 'L',90: 'XC', 100: 'C', 400: 'CD', 500:
             'D', 900: 'CM', 1000: 'M'}
         result = ''
+        int_value = self.int_value
         for value, number in sorted(el_roman.items(), reverse=True):
-            while self.int_value >= value:
+            while int_value >= value:
                 result += number
-                self.int_value -= value
+                int_value -= value
         return result
     def decimal_number(self):
         if self.rom_value is None:
@@ -93,3 +94,4 @@ print(num_3.rom_value)
 print(num_3)
 print(RomanNumber.is_int(-614))
 print(RomanNumber.is_int(3758))
+
