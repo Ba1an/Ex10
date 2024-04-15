@@ -1,12 +1,39 @@
 import random
 
 class NavalBattle:
+    """
+    It is a class representing a naval battle game.
+
+    Attributes
+    -----------
+    - mark: str, Mark representing a ship on the playing field.
+
+    Class Attributes
+    ----------------
+    - playing_field: list, A 2D list representing the playing field.
+    - final: list, A 2D list representing the final state of the playing field after shots.
+
+    Methods
+    --------
+    - shot(x, y): Performs a shot at the specified coordinates and updates the final state of the playing field.
+    - new_game(): Initializes a new game by randomly placing ships on the playing field.
+    - check_around(x, y): Checks if there are any ships around the specified coordinates.
+    - show(): Displays the final state of the playing field.
+    """
     playing_field = []
     final = [['~'] * 10 for _ in range(10)]
     def __init__(self, mark):
         self.mark = mark
 
     def shot(self, x, y):
+        """
+        Performs a shot at the specified coordinates and updates the final state of the playing field.
+
+        Parameters
+        ----------
+        - x: int, X coordinate of the shot.
+        - y: int, Y coordinate of the shot.
+        """
         if NavalBattle.playing_field == []:
             print('игровое поле не заполнено')
         elif NavalBattle.final[y - 1][x - 1] != '~':
@@ -20,6 +47,9 @@ class NavalBattle:
 
     @staticmethod
     def new_game():
+        """
+        Initializes a new game by randomly placing ships on the playing field.
+        """
         NavalBattle.playing_field = [[0] * 10 for _ in range(10)]
         ships = {'4': 1, '3': 2, '2': 3, '1': 4}
         for ship_size, count in ships.items():
@@ -77,6 +107,15 @@ class NavalBattle:
 
     @staticmethod
     def check_around(x, y):
+        """
+        Checks if there are any ships around the specified coordinates.
+
+        Parameters
+        ----------
+        - x: int, X coordinate.
+        - y: int, Y coordinate.
+        """
+
         for i in range(max(x - 1, 0), min(x + 2, 10)):
             for j in range(max(y - 1, 0), min(y + 2, 10)):
                 if (i != x and j != y) and NavalBattle.playing_field[j][i] == 1:
@@ -87,6 +126,9 @@ class NavalBattle:
 
     @staticmethod
     def show():
+        """
+        Displays the final state of the playing field.
+        """
         for z in NavalBattle.final:
             print(*z)
 

@@ -1,4 +1,26 @@
 class RomanNumber:
+    """
+    It is a class representing Roman numerals and providing arithmetic operations on them.
+
+    Attributes
+    -----------
+    - int_value: Integer value corresponding to the Roman numeral
+    - rom_value: Roman numeral representation of the integer value
+
+    Methods
+    --------
+    - __add__(self, other): Adds two Roman numbers.
+    - __sub__(self, other): Subtracts one Roman number from another.
+    - __mul__(self, other): Multiplies two Roman numbers.
+    - __floordiv__(self, other): Performs integer division of one Roman number by another.
+    - __mod__(self, other): Finds the remainder of division of one Roman number by another.
+    - __pow__(self, other): Raises one Roman number to the power of another.
+    - __truediv__(self, other): Performs true division of one Roman number by another.
+    - is_int(value): Checks if a given value is a valid integer within the range of Roman numerals.
+    - is_roman(value): Checks if a given value is a valid Roman numeral.
+    - roman_number(self): Converts an integer value to its Roman numeral representation.
+    - decimal_number(self): Converts a Roman numeral to its equivalent integer value.
+    """
     def __init__(self, number):
         if str(number).isdigit():
             if self.is_int(number):
@@ -29,6 +51,15 @@ class RomanNumber:
             return RomanNumber(None)
 
     def __sub__(self, other):
+        """
+        Adds two Roman numbers.
+
+        Parameters
+        ----------
+        - other: RomanNumber, The other Roman number to be added.
+
+        Returns the result of the addition. 
+        """
         if isinstance(other, RomanNumber):
             result = self.decimal_number() - other.decimal_number()
             if 0 < result < 4000:
@@ -39,8 +70,13 @@ class RomanNumber:
         else:
             print('ошибка')
             return RomanNumber(None)
-
     def __mul__(self, other):
+        """
+        Perform multiplication operation between two RomanNumber objects.
+
+        other: The RomanNumber object to be multiplied with.
+        Returns: The result of the multiplication operation.
+        """
         if isinstance(other, RomanNumber):
             result = self.decimal_number() * other.decimal_number()
             if 0 < result < 4000:
@@ -53,6 +89,12 @@ class RomanNumber:
             return RomanNumber(None)
 
     def __floordiv__(self, other):
+        """
+        Perform floor division operation between two RomanNumber objects.
+
+        other: The RomanNumber object to be divided by.
+        Returns: The result of the floor division operation.
+        """
         if isinstance(other, RomanNumber):
             if other.decimal_number() == 0:
                 print('ошибка')
@@ -70,6 +112,12 @@ class RomanNumber:
             return RomanNumber(None)
 
     def __mod__(self, other):
+        """
+        Perform modulo operation between two RomanNumber objects.
+
+        other: The RomanNumber object to be divided by.
+        Returns:The result of the modulo operation.
+        """
         if isinstance(other, RomanNumber):
             if other.decimal_number() == 0:
                 print('ошибка')
@@ -87,6 +135,12 @@ class RomanNumber:
             return RomanNumber(None)
 
     def __pow__(self, other):
+        """
+        Perform exponentiation operation between two RomanNumber objects.
+
+        other: The RomanNumber object to be divided by.
+        Returns: The result of the exponentiation operation.
+        """
         if isinstance(other, RomanNumber):
             result = self.decimal_number() ** other.decimal_number()
             if 0 < result < 4000:
@@ -99,6 +153,12 @@ class RomanNumber:
             return RomanNumber(None)
 
     def __truediv__(self, other):
+        """
+        Perform true division operation between two RomanNumber objects.
+
+        other: The RomanNumber object to be divided by.
+        Returns: The result of the true division operation.
+        """
         if isinstance(other, RomanNumber):
             if other.decimal_number() == 0:
                 print('ошибка')
@@ -117,11 +177,22 @@ class RomanNumber:
 
     @staticmethod
     def is_int(value):
+        """
+        Check if a value is an integer within the range of Roman numerals.
+        :param value: The value to be checked.
+        :return: True if the value is an integer within the range of Roman numerals, False otherwise.
+        """
         if (0 < value < 4000) and isinstance(value, int):
             return True
         return False
+
     @staticmethod
     def is_roman(value):
+        """
+        Check if a value is a valid Roman numeral.
+        :param value: The value to be checked.
+        :return: True if the value is a valid Roman numeral, False otherwise.
+        """
         right = 'IVXLCDM'
         for char in value:
             if char not in right:
@@ -141,6 +212,10 @@ class RomanNumber:
         return True
 
     def roman_number(self):
+        """
+        Convert an integer value to its Roman numeral representation.
+        :return: The Roman numeral representation of the integer value.
+        """
         if self.int_value is None:
             return None
         el_roman = {1: 'I', 4: 'IV', 5: 'V', 9: 'IX', 10: 'X', 40: 'XL', 50: 'L', 90: 'XC', 100: 'C', 400: 'CD', 500:
@@ -152,7 +227,13 @@ class RomanNumber:
                 result += number
                 int_value -= value
         return result
+
+
     def decimal_number(self):
+        """
+        Convert an integer value to its Roman numeral representation.
+        :return: The integer representation of the Roman numeral value.
+        """
         if self.rom_value is None:
             return None
         roman_el = {'I': 1, 'V': 5, 'X': 10, 'L': 50, 'C': 100, 'D': 500, 'M': 1000}

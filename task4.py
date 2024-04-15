@@ -1,4 +1,16 @@
 class RomanNumber:
+    """
+    It is a class representing Roman numerals and providing arithmetic operations on them.
+
+    Attributes
+    -----------
+    - rom_value: Roman numeral representation of the integer value
+
+    Methods
+    --------
+    - is_roman(value): Checks if a given value is a valid Roman numeral.
+    - decimal_number(self): Converts a Roman numeral to its equivalent integer value.
+    """
     def __init__(self, rom_value):
         if self.is_roman(rom_value):
             self.rom_value = rom_value
@@ -8,6 +20,11 @@ class RomanNumber:
 
     @staticmethod
     def is_roman(value):
+        """
+        Check if a value is a valid Roman numeral.
+        :param value: The value to be checked.
+        :return: True if the value is a valid Roman numeral, False otherwise.
+        """
         right = 'IVXLCDM'
         for char in value:
             if char not in right:
@@ -26,8 +43,11 @@ class RomanNumber:
                     return False
         return True
 
-
     def decimal_number(self):
+        """
+        Convert an integer value to its Roman numeral representation.
+        :return: The integer representation of the Roman numeral value.
+        """
         if self.rom_value is None:
             return None
         roman_el = {'I': 1, 'V': 5, 'X': 10, 'L': 50, 'C': 100, 'D': 500, 'M': 1000}
@@ -41,6 +61,7 @@ class RomanNumber:
                 result += value
             prev = value
         return result
+
     def __str__(self):
         '''
         Returns a string representation of a point.

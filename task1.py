@@ -1,4 +1,24 @@
 class Circle:
+    """
+    It is a class representing a circle.
+
+    Attributes
+    -----------
+    - rad: int or float, Radius of the circle.
+
+        Class Attributes
+    ----------------
+    - pi: mathematic constant, used to count the area of the circle
+    - all_circles: list of all appended elements.
+
+    Methods
+    --------
+    - area(): Returns the area of the circle.
+    - total_area(): Returns the total area of all circles created.
+    - __str__(): Returns the string representation of the circle.
+    - __repr__(): Returns the string representation of the circle for interactive presentation.
+    """
+
     pi = 3.1415
     all_circles = []
 
@@ -7,13 +27,19 @@ class Circle:
         Circle.all_circles.append(self)
 
     def area(self):
+        """
+        Returns the area of the circle.
+        """
         return (self.rad ** 2) * Circle.pi
 
     @staticmethod
     def total_area():
+        """
+        Returns the total area of all circles.
+        """
         total = 0
         for el in Circle.all_circles:
-            total += Circle.area(el)
+            total += el.area()
         return total
 
     def __str__(self):
@@ -21,7 +47,6 @@ class Circle:
 
     def __repr__(self):
         return self.__str__()
-
 
 
 c1 = Circle()
